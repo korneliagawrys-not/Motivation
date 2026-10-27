@@ -97,7 +97,7 @@ function renderStart() {
       <p class="start-section-label">Giving a way out for not ready users at the info-cerebral-right-support-book</p>
       <div class="actions">
         ${button("Start from Results", "start-results")}
-        ${button('Start from "Your first step: a free 15-minute call"', "start-call")}
+        ${button('Start from "Your first..."', "start-call")}
       </div>
     </section>
     <section class="start-section" aria-label="Ways to engage users from the app">
