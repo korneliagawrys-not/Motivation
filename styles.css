@@ -53,6 +53,22 @@ p { color: #586674; font-size: 16px; line-height: 1.5; margin: 0 0 18px; }
 .start .eyebrow { margin-bottom: 14px; }
 .small { color: #687783; font-size: 13px; }
 
+.explainer-shell { background: #ecf3f5; color: #252b33; margin: 0 auto; max-width: 393px; min-height: 100dvh; padding: 0 16px 110px; }
+.explainer-header { height: 48px; position: relative; }
+.explainer-back { align-items: center; background: none; border: 0; display: flex; height: 24px; justify-content: center; left: calc(50% - 12px); padding: 0; position: absolute; top: 12px; width: 24px; }
+.explainer-back img { display: block; }
+.explainer-home { background: #fff; border: 1px solid #a9bac0; border-radius: 8px; color: #276779; font-size: 11px; font-weight: 600; line-height: 15px; padding: 5px 7px; position: absolute; right: 0; top: 5px; }
+.explainer-main { align-items: center; display: flex; flex-direction: column; }
+.explainer-hero { aspect-ratio: 345 / 256; background: #f9e9c6; margin-top: 69px; max-width: 345px; overflow: hidden; position: relative; width: calc(100% - 16px); }
+.explainer-screen { border-radius: 16px; box-shadow: 0 10px 22px rgb(0 0 0 / 10%), 0 39px 39px rgb(0 0 0 / 9%); display: block; height: auto; left: 11.6%; position: absolute; top: 7.8%; width: 47.8%; }
+.explainer-screen-front { left: 40.6%; top: 37.5%; }
+.explainer-copy { margin-top: 48px; max-width: 345px; text-align: center; width: 100%; }
+.explainer-copy h1 { color: #252b33; font-size: 24px; font-weight: 700; line-height: 32px; margin: 0 0 8px; }
+.explainer-copy p { color: #616e80; font-size: 16px; font-weight: 500; line-height: 24px; margin: 0; }
+.explainer-action { bottom: calc(16px + env(safe-area-inset-bottom)); left: 50%; max-width: 361px; position: fixed; transform: translateX(-50%); width: calc(100% - 32px); }
+.explainer-action .primary { background: #086375; border-color: #086375; font-family: Poppins, Inter, sans-serif; font-size: 18px; font-weight: 500; height: 70px; line-height: 27px; }
+
 @media (min-width: 640px) {
   .shell { border-left: 1px solid #e3e8ea; border-right: 1px solid #e3e8ea; }
+  .explainer-shell { border-left: 1px solid #dce6e9; border-right: 1px solid #dce6e9; }
 }

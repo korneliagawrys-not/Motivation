@@ -1,6 +1,6 @@
 # Inflow secondary flow prototype
 
-A standalone, low-fidelity interactive prototype of the secondary path from the free 15-minute call invitation. The start page offers two entry points:
+A standalone interactive prototype of the secondary path from the free 15-minute call invitation. The app explainer screen follows the supplied Figma design; the other screens remain simplified for flow review. The start page offers two entry points:
 
 - **Start from Results:** walk through the care-option screens before reaching the call invitation.
 - **Start from Your first step:** begin at the call invitation.

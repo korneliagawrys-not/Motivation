@@ -226,11 +226,23 @@ function renderCall() {
 }
 
 function renderAppExplainer() {
-  app.innerHTML = frame(afterDecline[0], `<p class="eyebrow">Another way to start</p>
-    <div class="hero-placeholder">Inflow app preview</div>
-    <h1>Explore the Inflow app</h1>
-    <p>Inflow has short ADHD lessons and practical tools you can explore at your own pace.</p>`,
-    button("Continue", "next"));
+  app.innerHTML = `<div class="explainer-shell">
+    <header class="explainer-header">
+      <button class="explainer-back" data-action="back" aria-label="Go back"><img src="assets/inflow-app-explainer/chevron-left.svg" alt=""></button>
+      <button class="explainer-home" data-action="home">Main page</button>
+    </header>
+    <main class="explainer-main">
+      <div class="explainer-hero" aria-label="Screenshots of the Inflow app">
+        <img class="explainer-screen" src="assets/inflow-app-explainer/screen-learn.png" alt="Inflow learning modules">
+        <img class="explainer-screen explainer-screen-front" src="assets/inflow-app-explainer/screen-lessons.png" alt="Inflow lessons for daily life">
+      </div>
+      <div class="explainer-copy">
+        <h1>Explore the Inflow app</h1>
+        <p>Inflow has short ADHD lessons and practical tools you can explore at your own pace</p>
+      </div>
+    </main>
+    <div class="explainer-action">${button("Continue", "next")}</div>
+  </div>`;
 }
 
 function renderQuestion(id, screen) {
