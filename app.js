@@ -66,7 +66,7 @@ function navigate(id) {
 function startFrom(which) {
   entry = which;
   sessionStorage.setItem("prototypeEntry", which);
-  navigate(which === "results" ? beforeCall[0] : beforeCall.at(-1));
+  navigate(which === "results" ? beforeCall[0] : which === "app" ? afterDecline[0] : beforeCall.at(-1));
 }
 
 function nextScreen(id) {
@@ -78,7 +78,7 @@ function nextScreen(id) {
 function previousScreen(id) {
   if (id === "booking-reserve") return beforeCall.at(-1);
   if (id === "booking-confirmed") return "booking-reserve";
-  if (id === afterDecline[0]) return beforeCall.at(-1);
+  if (id === afterDecline[0]) return entry === "app" ? "start" : beforeCall.at(-1);
   if (id === beforeCall.at(-1) && entry === "call") return "start";
   const path = beforeCall.includes(id) ? beforeCall : afterDecline;
   const index = path.indexOf(id);
@@ -96,6 +96,7 @@ function renderStart() {
     <div class="actions">
       ${button("Start from Results", "start-results")}
       ${button("Start from Your first step: a free 15-minute call", "start-call")}
+      ${button("ways to engage users from the app", "start-app")}
     </div>
   </main></div>`;
 }
@@ -175,6 +176,7 @@ app.addEventListener("click", (event) => {
   else if (action === "skip") navigate(beforeCall.at(-1));
   else if (action === "start-results") startFrom("results");
   else if (action === "start-call") startFrom("call");
+  else if (action === "start-app") startFrom("app");
   else if (action === "decline") navigate(afterDecline[0]);
   else if (action === "book") navigate("booking-reserve");
   else if (action === "confirm-booking") navigate("booking-confirmed");
