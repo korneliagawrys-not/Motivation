@@ -185,8 +185,9 @@ function frame(id, inner, actions = "") {
   const path = beforeCall.includes(id) ? beforeCall : afterDecline;
   const position = path.indexOf(id);
   const progress = position >= 0 ? `Step ${position + 1} of ${path.length}` : "";
+  const showSkip = entry === "results" && beforeCall.includes(id) && id !== beforeCall.at(-1);
   return `<div class="shell">
-    <header class="top"><button data-action="back" aria-label="Go back">← Back</button><span class="brand">${id === "insurance-prototype-inflow-app" || afterDecline.includes(id) ? "Inflow" : "Cerebral"}</span><button data-action="home">Main page</button></header>
+    <header class="top"><button data-action="back" aria-label="Go back">← Back</button><span class="brand">${id === "insurance-prototype-inflow-app" || afterDecline.includes(id) ? "Inflow" : "Cerebral"}</span><div class="top-actions">${showSkip ? '<button data-action="skip">Skip to the design</button>' : ""}<button data-action="home">Main page</button></div></header>
     <div class="progress">${progress}</div>
     <main class="content">${inner}</main>
     ${actions ? `<footer class="actions">${actions}</footer>` : ""}
@@ -296,6 +297,7 @@ app.addEventListener("click", (event) => {
   const id = currentScreen();
   if (action === "home") navigate("start");
   else if (action === "back") navigate(previousScreen(id));
+  else if (action === "skip") navigate(beforeCall.at(-1));
   else if (action === "start-results") startFrom("results");
   else if (action === "start-call") startFrom("call");
   else if (action === "decline") navigate(afterDecline[0]);

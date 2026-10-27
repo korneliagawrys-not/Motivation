@@ -7,4 +7,6 @@ A standalone, low-fidelity interactive prototype of the secondary path from the 
 
 On the call page, **I'm not interested for now** opens a short Inflow app explanation. **Continue** then follows the journey questions from `question-busy-journey` through `info-start-today`. The **Main page** link on each screen returns to the two entry buttons.
 
+The Results path includes **Skip to the design** beside **Main page** on its pre-call screens. It jumps directly to the free 15-minute call invitation.
+
 Open `index.html` in a browser to review the flow. It has no build step, backend calls, real booking, or production data.
