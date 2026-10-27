@@ -50,8 +50,12 @@ p { color: #586674; font-size: 16px; line-height: 1.5; margin: 0 0 18px; }
 .secondary { background: #fff; border: 2px solid #2d6877; color: #2d6877; }
 .start .content { flex: 0; padding: 0; }
 .start .actions { margin-top: 24px; padding: 0; }
-.start h1 { margin-bottom: 0; }
+.start h1 { font-size: clamp(25px, 6vw, 30px); line-height: 1.25; margin-bottom: 0; }
 .start .eyebrow { margin-bottom: 14px; }
+.start-section { margin-top: 28px; }
+.start-section + .start-section { margin-top: 36px; }
+.start-section-label { color: #252b33; font-size: 16px; font-weight: 600; line-height: 1.4; margin: 0; overflow-wrap: anywhere; }
+.start-section .actions { margin-top: 14px; }
 .small { color: #687783; font-size: 13px; }
 
 .snapshot-wrap { background: #fff; margin: 0 auto; max-width: 478px; min-height: 100dvh; }

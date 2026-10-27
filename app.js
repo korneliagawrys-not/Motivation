@@ -92,12 +92,18 @@ function button(label, action, variant = "primary") {
 function renderStart() {
   app.innerHTML = `<div class="shell start"><main class="content">
     <p class="eyebrow">Inflow app secondary flow</p>
-    <h1>Choose where to start</h1>
-    <div class="actions">
-      ${button("Start from Results", "start-results")}
-      ${button("Start from Your first step: a free 15-minute call", "start-call")}
-      ${button("ways to engage users from the app", "start-app")}
-    </div>
+    <h1>A mismatch between users' initial intentions and the therapy-focused outcome</h1>
+    <section class="start-section" aria-label="Giving a way out for not ready users">
+      <p class="start-section-label">Giving a way out for not ready users at the info-cerebral-right-support-book</p>
+      <div class="actions">
+        ${button("Start from Results", "start-results")}
+        ${button("Start from Your first step: a free 15-minute call", "start-call")}
+      </div>
+    </section>
+    <section class="start-section" aria-label="Ways to engage users from the app">
+      <p class="start-section-label">Ways to engage users from the app</p>
+      <div class="actions">${button("ways to engage users from the app", "start-app")}</div>
+    </section>
   </main></div>`;
 }
 
