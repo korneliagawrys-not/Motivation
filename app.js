@@ -91,7 +91,6 @@ function button(label, action, variant = "primary") {
 
 function renderStart() {
   app.innerHTML = `<div class="shell start"><main class="content">
-    <p class="eyebrow">Inflow app secondary flow</p>
     <h1>A mismatch between users' initial intentions and the therapy-focused outcome</h1>
     <section class="start-section" aria-label="Giving a way out for not ready users">
       <p class="start-section-label">Giving a way out for not ready users at the info-cerebral-right-support-book</p>
