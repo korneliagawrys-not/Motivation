@@ -1,12 +1,12 @@
 # Inflow secondary flow prototype
 
-A standalone clickthrough of the secondary path from the free 15-minute call invitation. The Results, care, and journey screens use visual captures from the original Insurance project. The “Explore the Inflow app” screen follows the supplied Figma design. The start page groups three entry points under the mismatch and app engagement concepts:
+A standalone clickthrough of the secondary path from the free 15-minute call invitation. The Results, care, and journey screens use visual captures from the original Insurance project. The “Explore the Inflow app” screen follows the supplied Figma design. The start page groups two active entry points and a disabled app engagement option:
 
 - **Start from Results:** walk through the care-option screens before reaching the call invitation.
 - **Start from "Your first step: a free 15-minute call":** begin at the call invitation.
-- **ways to engage users from the app:** begin at the Inflow app explanation.
+- **See more:** currently disabled under “Ways to engage users from the app.”
 
-On the call page, **I'm not interested for now** opens the Inflow app explanation. **Continue** then follows the journey questions from `question-busy-journey` through `info-start-today`. The internal main-page control on each captured screen returns to the three entry buttons.
+On the call page, **I'm not interested for now** opens the Inflow app explanation. **Continue** then follows the journey questions from `question-busy-journey` through `info-start-today`. The internal main-page control on each captured screen returns to the start page.
 
 The Results path includes **Skip to the design** on its pre-call screens. It jumps directly to the free 15-minute call invitation.
 

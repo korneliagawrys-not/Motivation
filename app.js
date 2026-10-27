@@ -102,7 +102,7 @@ function renderStart() {
     </section>
     <section class="start-section" aria-label="Ways to engage users from the app">
       <p class="start-section-label">Ways to engage users from the app</p>
-      <div class="actions">${button("ways to engage users from the app", "start-app")}</div>
+      <div class="actions"><button class="primary" type="button" disabled>See more</button></div>
     </section>
   </main></div>`;
 }
@@ -182,7 +182,6 @@ app.addEventListener("click", (event) => {
   else if (action === "skip") navigate(beforeCall.at(-1));
   else if (action === "start-results") startFrom("results");
   else if (action === "start-call") startFrom("call");
-  else if (action === "start-app") startFrom("app");
   else if (action === "decline") navigate(afterDecline[0]);
   else if (action === "book") navigate("booking-reserve");
   else if (action === "confirm-booking") navigate("booking-confirmed");
