@@ -1,12 +1,12 @@
 # Inflow secondary flow prototype
 
-A standalone interactive prototype of the secondary path from the free 15-minute call invitation. The app explainer screen follows the supplied Figma design; the other screens remain simplified for flow review. The start page offers two entry points:
+A standalone clickthrough of the secondary path from the free 15-minute call invitation. The Results, care, and journey screens use visual captures from the original Insurance project. The “Explore the Inflow app” screen follows the supplied Figma design. The start page offers two entry points:
 
 - **Start from Results:** walk through the care-option screens before reaching the call invitation.
 - **Start from Your first step:** begin at the call invitation.
 
-On the call page, **I'm not interested for now** opens a short Inflow app explanation. **Continue** then follows the journey questions from `question-busy-journey` through `info-start-today`. The **Main page** link on each screen returns to the two entry buttons.
+On the call page, **I'm not interested for now** opens the Inflow app explanation. **Continue** then follows the journey questions from `question-busy-journey` through `info-start-today`. The internal main-page control on each captured screen returns to the two entry buttons.
 
-The Results path includes **Skip to the design** beside **Main page** on its pre-call screens. It jumps directly to the free 15-minute call invitation.
+The Results path includes **Skip to the design** on its pre-call screens. It jumps directly to the free 15-minute call invitation.
 
-Open `index.html` in a browser to review the flow. It has no build step, backend calls, real booking, or production data.
+Open `index.html` in a browser to review the flow. Clickable areas are placed over the captured screens to preserve the prototype navigation. Animated and long screens are represented by still captures. The booking confirmation remains a local mock; no appointment is created. There is no build step, backend call, private app source, or production data in this repository.
