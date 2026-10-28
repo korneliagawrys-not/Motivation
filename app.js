@@ -147,13 +147,14 @@ function renderOriginal(id) {
 
 function renderResultsBranch() {
   const base = "assets/figma/results-branch";
+  const newBase = "assets/figma/results-branch-v2";
   const therapySelected = resultsBranchSelection === "therapy";
   app.innerHTML = `<div class="results-branch-screen">
     <div class="results-branch-status" aria-hidden="true">
       <div class="results-branch-status-left">9:41</div>
       <div class="results-branch-status-island"></div>
       <div class="results-branch-status-right">
-        <img src="${base}/cellular.svg" alt=""><img src="${base}/wifi.svg" alt=""><img src="${base}/battery.svg" alt="">
+        <img src="${base}/cellular.svg" alt=""><img src="${base}/wifi.svg" alt=""><img src="${newBase}/battery.svg" alt="">
       </div>
     </div>
     <header class="results-branch-header">
@@ -164,12 +165,19 @@ function renderResultsBranch() {
       <p class="results-branch-subtitle">Lorem</p>
       <div class="results-branch-options" role="group" aria-label="How to continue">
         <button class="results-branch-option${therapySelected ? " is-selected" : ""}" data-action="choose-therapy" aria-pressed="${therapySelected}">
-          <span class="results-branch-media results-branch-media-photo"><img src="${base}/therapy-photo.png" alt=""><span class="results-branch-photo-tint"></span></span>
+          <span class="results-branch-media results-branch-media-therapy"><img src="${newBase}/therapy-illustration.svg" alt=""></span>
           <span class="results-branch-badge">${therapySelected ? `<img src="${base}/selected-check.svg" alt="">` : ""}</span>
-          <span class="results-branch-copy"><strong>Therapy and application</strong><span class="results-branch-insurance"><img src="${base}/insurance-check.svg" alt="">Accepts insurance</span></span>
+          <span class="results-branch-copy"><strong>Therapy and the app</strong><span class="results-branch-insurance"><img src="${base}/insurance-check.svg" alt="">Accepts insurance</span></span>
         </button>
         <button class="results-branch-option${therapySelected ? "" : " is-selected"}" data-action="choose-app" aria-pressed="${!therapySelected}">
-          <span class="results-branch-media"></span>
+          <span class="results-branch-media results-branch-media-app">
+            <span class="results-branch-app-wave results-branch-app-wave-top"><img src="${newBase}/app-wave-top.svg" alt=""></span>
+            <img class="results-branch-app-phone" src="${newBase}/app-phone.svg" alt="">
+            <img class="results-branch-app-star" src="${newBase}/app-star.svg" alt="">
+            <img class="results-branch-app-shapes" src="${newBase}/app-shapes.svg" alt="">
+            <span class="results-branch-app-screen"><img src="${newBase}/app-icon-source.png" alt=""></span>
+            <span class="results-branch-app-wave results-branch-app-wave-bottom"><img src="${newBase}/app-wave-bottom.svg" alt=""></span>
+          </span>
           <span class="results-branch-badge">${therapySelected ? "" : `<img src="${base}/selected-check.svg" alt="">`}</span>
           <span class="results-branch-copy"><strong>Start with the app</strong><span class="results-branch-app-caption">Lorem</span></span>
         </button>
