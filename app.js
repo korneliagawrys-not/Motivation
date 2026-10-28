@@ -33,6 +33,7 @@ const afterDecline = [
   "info-start-today",
 ];
 
+const resultsBranchScreen = "results-branch-choice";
 const originalScreens = window.originalScreens || {};
 const multiSelectScreens = new Set([
   "question-better-future",
@@ -49,10 +50,11 @@ const tapToContinueScreens = new Set([
 const app = document.querySelector("#app");
 const answers = {};
 let entry = sessionStorage.getItem("prototypeEntry") || "call";
+let resultsBranchSelection = sessionStorage.getItem("resultsBranchSelection") || "therapy";
 
 function currentScreen() {
   const id = decodeURIComponent(location.hash.slice(1));
-  return id === "start" || beforeCall.includes(id) || afterDecline.includes(id) || id === "booking-reserve" || id === "booking-confirmed"
+  return id === "start" || id === resultsBranchScreen || beforeCall.includes(id) || afterDecline.includes(id) || id === "booking-reserve" || id === "booking-confirmed"
     ? id
     : "start";
 }
@@ -66,19 +68,26 @@ function navigate(id) {
 function startFrom(which) {
   entry = which;
   sessionStorage.setItem("prototypeEntry", which);
-  navigate(which === "results" ? beforeCall[0] : which === "app" ? afterDecline[0] : beforeCall.at(-1));
+  sessionStorage.removeItem("appExplainerReturn");
+  if (which === "branch-results") {
+    resultsBranchSelection = "therapy";
+    sessionStorage.setItem("resultsBranchSelection", resultsBranchSelection);
+  }
+  navigate(which === "results" || which === "branch-results" ? beforeCall[0] : which === "app" ? afterDecline[0] : beforeCall.at(-1));
 }
 
 function nextScreen(id) {
+  if (id === beforeCall[0] && entry === "branch-results") return resultsBranchScreen;
   const path = beforeCall.includes(id) ? beforeCall : afterDecline;
   const index = path.indexOf(id);
   return path[index + 1] || "start";
 }
 
 function previousScreen(id) {
+  if (id === resultsBranchScreen) return beforeCall[0];
   if (id === "booking-reserve") return beforeCall.at(-1);
   if (id === "booking-confirmed") return "booking-reserve";
-  if (id === afterDecline[0]) return entry === "app" ? "start" : beforeCall.at(-1);
+  if (id === afterDecline[0]) return sessionStorage.getItem("appExplainerReturn") || (entry === "app" ? "start" : beforeCall.at(-1));
   if (id === beforeCall.at(-1) && entry === "call") return "start";
   const path = beforeCall.includes(id) ? beforeCall : afterDecline;
   const index = path.indexOf(id);
@@ -98,6 +107,10 @@ function renderStart() {
         ${button("Start from Results", "start-results")}
         ${button('Start from "Your first..."', "start-call")}
       </div>
+    </section>
+    <section class="start-section" aria-label="Branching after the results page">
+      <p class="start-section-label">Branching after the results page</p>
+      <div class="actions">${button("Start", "start-branch-results")}</div>
     </section>
     <section class="start-section" aria-label="Ways to engage users from the app">
       <p class="start-section-label">Ways to engage users from the app</p>
@@ -129,6 +142,43 @@ function renderOriginal(id) {
       ${screen.hotspots.map((control) => hotspot(control, pageHeight, id)).join("")}
       ${skip}
     </main>
+  </div>`;
+}
+
+function renderResultsBranch() {
+  const base = "assets/figma/results-branch";
+  const therapySelected = resultsBranchSelection === "therapy";
+  app.innerHTML = `<div class="results-branch-screen">
+    <div class="results-branch-status" aria-hidden="true">
+      <div class="results-branch-status-left">9:41</div>
+      <div class="results-branch-status-island"></div>
+      <div class="results-branch-status-right">
+        <img src="${base}/cellular.svg" alt=""><img src="${base}/wifi.svg" alt=""><img src="${base}/battery.svg" alt="">
+      </div>
+    </div>
+    <header class="results-branch-header">
+      <button class="results-branch-back" data-action="back" aria-label="Go back"><img src="${base}/chevron.svg" alt=""></button>
+    </header>
+    <main class="results-branch-main">
+      <h1>How would you like to<br>continue?</h1>
+      <p class="results-branch-subtitle">Lorem</p>
+      <div class="results-branch-options" role="group" aria-label="How to continue">
+        <button class="results-branch-option${therapySelected ? " is-selected" : ""}" data-action="choose-therapy" aria-pressed="${therapySelected}">
+          <span class="results-branch-media results-branch-media-photo"><img src="${base}/therapy-photo.png" alt=""><span class="results-branch-photo-tint"></span></span>
+          <span class="results-branch-badge">${therapySelected ? `<img src="${base}/selected-check.svg" alt="">` : ""}</span>
+          <span class="results-branch-copy"><strong>Therapy and application</strong><span class="results-branch-insurance"><img src="${base}/insurance-check.svg" alt="">Accepts insurance</span></span>
+        </button>
+        <button class="results-branch-option${therapySelected ? "" : " is-selected"}" data-action="choose-app" aria-pressed="${!therapySelected}">
+          <span class="results-branch-media"></span>
+          <span class="results-branch-badge">${therapySelected ? "" : `<img src="${base}/selected-check.svg" alt="">`}</span>
+          <span class="results-branch-copy"><strong>Start with the app</strong><span class="results-branch-app-caption">Lorem</span></span>
+        </button>
+      </div>
+    </main>
+    <footer class="results-branch-footer">
+      ${button("Continue", "continue-results-branch")}
+      <span class="results-branch-home-indicator" aria-hidden="true"></span>
+    </footer>
   </div>`;
 }
 
@@ -164,7 +214,9 @@ function renderBookingConfirmation() {
 function render() {
   const id = currentScreen();
   document.body.classList.toggle("original-preview", Boolean(originalScreens[id]));
+  document.body.classList.toggle("results-branch-preview", id === resultsBranchScreen);
   if (id === "start") renderStart();
+  else if (id === resultsBranchScreen) renderResultsBranch();
   else if (id === afterDecline[0]) renderAppExplainer();
   else if (id === "booking-confirmed") renderBookingConfirmation();
   else if (originalScreens[id]) renderOriginal(id);
@@ -181,7 +233,22 @@ app.addEventListener("click", (event) => {
   else if (action === "skip") navigate(beforeCall.at(-1));
   else if (action === "start-results") startFrom("results");
   else if (action === "start-call") startFrom("call");
-  else if (action === "decline") navigate(afterDecline[0]);
+  else if (action === "start-branch-results") startFrom("branch-results");
+  else if (action === "choose-therapy" || action === "choose-app") {
+    resultsBranchSelection = action === "choose-app" ? "app" : "therapy";
+    sessionStorage.setItem("resultsBranchSelection", resultsBranchSelection);
+    renderResultsBranch();
+  }
+  else if (action === "continue-results-branch") {
+    if (resultsBranchSelection === "app") {
+      sessionStorage.setItem("appExplainerReturn", resultsBranchScreen);
+      navigate(afterDecline[0]);
+    } else navigate(beforeCall[1]);
+  }
+  else if (action === "decline") {
+    sessionStorage.setItem("appExplainerReturn", beforeCall.at(-1));
+    navigate(afterDecline[0]);
+  }
   else if (action === "book") navigate("booking-reserve");
   else if (action === "confirm-booking") navigate("booking-confirmed");
   else if (action === "next") navigate(nextScreen(id));

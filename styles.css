@@ -8,6 +8,7 @@
 * { box-sizing: border-box; }
 body { margin: 0; }
 body.original-preview { background: #fff; }
+body.results-branch-preview { background: #fff; }
 button { font: inherit; cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .45; }
 button:focus-visible { outline: 3px solid #7ab7bf; outline-offset: 3px; }
@@ -57,6 +58,38 @@ p { color: #586674; font-size: 16px; line-height: 1.5; margin: 0 0 18px; }
 .start-section-label { color: #252b33; font-size: 16px; font-weight: 600; line-height: 1.4; margin: 0; overflow-wrap: anywhere; }
 .start-section .actions { margin-top: 14px; }
 .small { color: #687783; font-size: 13px; }
+
+.results-branch-screen { background: #ecf3f5; color: #252b33; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; height: 852px; margin: 0 auto; max-width: 393px; position: relative; width: 100%; }
+.results-branch-status { align-items: flex-start; display: flex; height: 54px; padding-top: 18px; }
+.results-branch-status-left, .results-branch-status-right { align-items: center; display: flex; flex: 1; height: 22px; justify-content: center; min-width: 0; }
+.results-branch-status-left { font-size: 17px; font-weight: 600; line-height: 22px; padding-left: 16px; padding-right: 6px; }
+.results-branch-status-island { flex: 0 0 124px; }
+.results-branch-status-right { gap: 7px; padding-left: 6px; padding-right: 16px; }
+.results-branch-status-right img { display: block; }
+.results-branch-header { align-items: center; display: flex; height: 48px; padding: 0 16px; }
+.results-branch-back { align-items: center; background: none; border: 0; display: flex; height: 24px; justify-content: center; padding: 0; width: 24px; }
+.results-branch-back img { display: block; }
+.results-branch-main { padding: 32px 16px 148px; }
+.results-branch-main h1 { font-size: 24px; font-weight: 700; line-height: 32px; margin: 0; }
+.results-branch-subtitle { color: #616e80; font-size: 16px; font-weight: 500; line-height: 24px; margin: 8px 0 16px; }
+.results-branch-options { display: grid; gap: 8px; }
+.results-branch-option { background: transparent; border: 0; border-radius: 24px; color: #252b33; display: block; height: 225px; overflow: hidden; padding: 0; position: relative; text-align: left; width: 100%; }
+.results-branch-option.is-selected::after { border: 3px solid #0c8ca6; border-radius: 24px; content: ""; inset: 0; pointer-events: none; position: absolute; z-index: 3; }
+.results-branch-option:focus-visible { outline: 3px solid #086375; outline-offset: 3px; }
+.results-branch-media { display: block; height: 135px; overflow: hidden; position: relative; width: 100%; }
+.results-branch-media-photo img { display: block; height: auto; left: 0; position: absolute; top: -17px; width: 100%; }
+.results-branch-photo-tint { background: rgba(9, 105, 125, .3); inset: 0; position: absolute; }
+.results-branch-badge { align-items: center; background: #fff; border: 1px dashed #0c8ca6; border-radius: 50%; display: flex; height: 32px; justify-content: center; position: absolute; right: 16px; top: 16px; width: 32px; z-index: 4; }
+.results-branch-option.is-selected .results-branch-badge { background: #086375; border: 0; }
+.results-branch-badge img { display: block; }
+.results-branch-copy { background: #fff; display: block; height: 90px; padding: 24px 14px; }
+.results-branch-copy strong { display: block; font-size: 14px; font-weight: 700; line-height: 20px; }
+.results-branch-insurance { align-items: center; color: rgba(37, 43, 51, .7); display: flex; font-size: 12px; font-weight: 500; line-height: 18px; margin-top: 4px; }
+.results-branch-insurance img { display: block; }
+.results-branch-app-caption { color: rgba(37, 43, 51, .7); display: block; font-size: 12px; font-weight: 500; line-height: 18px; margin-top: 4px; }
+.results-branch-footer { background: #fff; border-top: 1px solid #d9d9d9; bottom: 0; height: 112px; left: 0; padding: 15px 16px 0; position: absolute; right: 0; }
+.results-branch-footer .primary { background: #086375; border-color: #086375; border-radius: 48px; font-size: 16px; font-weight: 700; height: 48px; line-height: 24px; min-height: 48px; padding: 8px 16px; }
+.results-branch-home-indicator { background: #252b33; border-radius: 100px; bottom: 8px; height: 5px; left: 50%; position: absolute; transform: translateX(-50%); width: 144px; }
 
 .snapshot-wrap { background: #fff; margin: 0 auto; max-width: 478px; min-height: 100dvh; }
 .snapshot-stage { margin: 0 auto; position: relative; width: 100%; }
