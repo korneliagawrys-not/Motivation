@@ -50,7 +50,7 @@ const tapToContinueScreens = new Set([
 ]);
 const app = document.querySelector("#app");
 const answers = {};
-let entry = sessionStorage.getItem("prototypeEntry") || "call";
+let entry = sessionStorage.getItem("prototypeEntry") || (new URLSearchParams(location.search).get("version") === "branch-after-results" ? "branch-results" : "call");
 let resultsBranchSelection = sessionStorage.getItem("resultsBranchSelection") || "therapy";
 
 function currentScreen() {
