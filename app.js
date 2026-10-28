@@ -128,20 +128,24 @@ function hotspot(control, pageHeight, id) {
 function renderOriginal(id) {
   const screen = originalScreens[id];
   const pageHeight = screen.height;
-  const bottom = screen.bottomOffset == null ? "" : `<img class="snapshot-image snapshot-bottom" style="top:${(screen.bottomOffset / pageHeight) * 100}%;clip-path:inset(${((865 - screen.bottomOffset) / 865) * 100}% 0 0 0)" src="assets/original-screens/${id}-bottom.jpg" alt="" aria-hidden="true">`;
+  const earlyBranchResult = id === beforeCall[0] && entry === "branch-results";
+  const displayHeight = earlyBranchResult ? 900 : pageHeight;
+  const bottom = earlyBranchResult || screen.bottomOffset == null ? "" : `<img class="snapshot-image snapshot-bottom" style="top:${(screen.bottomOffset / displayHeight) * 100}%;clip-path:inset(${((865 - screen.bottomOffset) / 865) * 100}% 0 0 0)" src="assets/original-screens/${id}-bottom.jpg" alt="" aria-hidden="true">`;
   const advance = tapToContinueScreens.has(id)
     ? `<button class="snapshot-advance" data-action="next" aria-label="Continue to the next screen"></button>`
     : "";
   const skip = entry === "results" && beforeCall.includes(id) && id !== beforeCall.at(-1)
     ? `<button class="snapshot-skip" data-action="skip">Skip to the design</button>`
     : "";
-  app.innerHTML = `<div class="snapshot-wrap">
-    <main class="snapshot-stage" style="aspect-ratio:478 / ${pageHeight}" aria-label="Original ${id.replaceAll('-', ' ')} screen">
+  const controls = earlyBranchResult ? screen.hotspots.filter((control) => control.action === "back" || control.action === "home") : screen.hotspots;
+  app.innerHTML = `<div class="snapshot-wrap${earlyBranchResult ? " snapshot-early-branch" : ""}">
+    <main class="snapshot-stage" style="aspect-ratio:478 / ${displayHeight}" aria-label="Original ${id.replaceAll('-', ' ')} screen">
       <img class="snapshot-image" src="assets/original-screens/${id}.jpg" alt="" aria-hidden="true">
       ${bottom}${advance}
-      ${screen.hotspots.map((control) => hotspot(control, pageHeight, id)).join("")}
+      ${controls.map((control) => hotspot(control, displayHeight, id)).join("")}
       ${skip}
     </main>
+    ${earlyBranchResult ? `<footer class="snapshot-early-branch-footer">${button("Continue", "next")}</footer>` : ""}
   </div>`;
 }
 
