@@ -85,6 +85,7 @@ function nextScreen(id) {
 
 function previousScreen(id) {
   if (id === resultsBranchScreen) return beforeCall[0];
+  if (id === afterDecline[1] && entry === "branch-results" && resultsBranchSelection === "app" && sessionStorage.getItem("appExplainerReturn") === resultsBranchScreen) return resultsBranchScreen;
   if (id === "booking-reserve") return beforeCall.at(-1);
   if (id === "booking-confirmed") return "booking-reserve";
   if (id === afterDecline[0]) return sessionStorage.getItem("appExplainerReturn") || (entry === "app" ? "start" : beforeCall.at(-1));
@@ -225,6 +226,10 @@ function renderBookingConfirmation() {
 
 function render() {
   const id = currentScreen();
+  if (id === afterDecline[0] && entry === "branch-results" && sessionStorage.getItem("appExplainerReturn") === resultsBranchScreen) {
+    navigate(afterDecline[1]);
+    return;
+  }
   document.body.classList.toggle("original-preview", Boolean(originalScreens[id]));
   document.body.classList.toggle("results-branch-preview", id === resultsBranchScreen);
   if (id === "start") renderStart();
@@ -254,7 +259,7 @@ app.addEventListener("click", (event) => {
   else if (action === "continue-results-branch") {
     if (resultsBranchSelection === "app") {
       sessionStorage.setItem("appExplainerReturn", resultsBranchScreen);
-      navigate(afterDecline[0]);
+      navigate(afterDecline[1]);
     } else navigate(beforeCall[1]);
   }
   else if (action === "decline") {
