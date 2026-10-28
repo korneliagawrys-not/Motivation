@@ -4,7 +4,7 @@ A standalone clickthrough of the secondary path from the free 15-minute call inv
 
 - **Start from Results:** walk through the care-option screens before reaching the call invitation.
 - **Start from "Your first...":** begin at the call invitation.
-- **Start** under “Branching after the results page”: see the two Figma-based Results screens (the 86% summary and the challenge breakdown), then choose “Therapy and the app” or “Start with the app.” Therapy continues through the existing care screens; the app option opens “Explore the Inflow app” and then the journey questions.
+- **Start** under “Branching after the results page”: begin at Results, then choose “Therapy and the app” or “Start with the app” on the Figma-based choice screen. Therapy continues through the existing care screens; the app option opens “Explore the Inflow app” and then the journey questions.
 - **See more:** currently disabled under “Ways to engage users from the app.”
 
 On the call page, **I'm not interested for now** opens the Inflow app explanation. **Continue** then follows the journey questions from `question-busy-journey` through `info-start-today`. The internal main-page control on each captured screen returns to the start page.

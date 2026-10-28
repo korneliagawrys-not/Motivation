@@ -1,6 +1,0 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="329" height="8" viewBox="0 0 329 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Group 624880">
-<path id="Track" d="M0 4C0 1.79086 1.79086 0 4 0H325C327.209 0 329 1.79086 329 4C329 6.20914 327.209 8 325 8H3.99999C1.79085 8 0 6.20914 0 4Z" fill="white"/>
-<path id="Progress indicator" d="M0 4C0 1.79086 1.79086 0 4 0H146C148.209 0 150 1.79086 150 4C150 6.20914 148.209 8 146 8H4C1.79086 8 0 6.20914 0 4Z" fill="#086375"/>
-</g>
-</svg>
